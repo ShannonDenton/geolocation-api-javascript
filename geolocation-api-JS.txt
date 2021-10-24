@@ -1,0 +1,19 @@
+function showTemperature(response) {
+  console.log(response);
+  let temperature = Math.round(response.data.main.temp);
+
+  let heading = document.querySelector("h1");
+  heading.innerHTML = `The outside temperature is ${temperature}degrees`;
+}
+
+function retrievePositions(position) {
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+  let apiKey = "e6c2364656962bdcb16bc352fc42569a";
+  let units = "imperial";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
+}
+
+axios.get(apiUrl).then(showTemperature);
+
+navigator.geolocation.getCurrentPosition(retrievePositions);
